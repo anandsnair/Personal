@@ -26,6 +26,9 @@ public class UserRepositoryTest {
 	@Autowired
 	TestEntityManager entityManager;
 	
+	@Autowired
+	UserRepository userRepo;
+	
 	@Test
 	public void createUser() {
 		User user = new User();
@@ -62,5 +65,25 @@ public class UserRepositoryTest {
 		System.out.println("Home Address City = "+fetchedUser.getAddress().size());
 		assertEquals(user.getId(), fetchedUser.getId());
 
+	}
+	
+	@Test
+	public void create50Users() {
+		
+		for(int i = 0 ; i < 50 ; i++) {
+			User user = new User();
+			Name n = new Name("first"+i,"m"+i, "last"+1);
+			user.setUsername("user "+i);
+			user.setPassword("password"+i);
+			user.setName(n);
+			user.setAge(i);
+			entityManager.persistAndFlush(user);
+		}
+
+		List<User> users = userRepo.findByAgeLessThan(25);
+		System.out.println(users.size());
+		
+		User user = userRepo.customQuery("user 22");
+		System.out.println(user.getPassword());
 	}
 }

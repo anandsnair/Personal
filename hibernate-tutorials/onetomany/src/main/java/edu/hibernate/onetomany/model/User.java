@@ -21,6 +21,10 @@ public class User extends AbstractBaseModel {
 	private String username;
 	@Column(name="PASSWORD",nullable=false)
 	private String password;
+	
+	@Column(name="AGE")
+	private int age;
+	
 	@OneToMany(mappedBy="user")
 	private Set<Address> address = new HashSet<>();
 	public Name getName() {
@@ -45,6 +49,14 @@ public class User extends AbstractBaseModel {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public Set<Address> getAddress() {
