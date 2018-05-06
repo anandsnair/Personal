@@ -13,7 +13,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name="ADDRESS")
@@ -28,7 +30,7 @@ public class Address extends AbstractBaseModel implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
-	@JsonIgnore
+	@JsonBackReference
 	private User user;
 	public String getFirstLine() {
 		return firstLine;

@@ -11,7 +11,7 @@ import javax.persistence.PrePersist;
 import org.springframework.data.domain.Persistable;
 
 @MappedSuperclass
-public class AbstractBaseModel implements Persistable<String>{
+public class AbstractBaseModel implements Persistable<String>{ 
 	@Id
 	@Column(name="ID")
 	private String id;

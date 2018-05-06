@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="USER")
 public class User extends AbstractBaseModel {
@@ -26,6 +28,7 @@ public class User extends AbstractBaseModel {
 	private int age;
 	
 	@OneToMany(mappedBy="user")
+	@JsonManagedReference
 	private Set<Address> address = new HashSet<>();
 	public Name getName() {
 		return name;
